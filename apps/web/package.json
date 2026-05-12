@@ -42,6 +42,7 @@
     "gsap": "^3.12.5",
     "nodemailer": "^6.9.16",
     "nuxt": "^4.4.5",
+    "nuxt-llms": "^0.2.0",
     "pg": "^8.13.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4.3.0",

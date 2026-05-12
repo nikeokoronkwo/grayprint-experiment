@@ -1,7 +1,7 @@
 import nodemailer, { type Transporter } from 'nodemailer';
-import { renderDeviceApprovalEmail } from '../emails/device-approval.js';
-import { renderMagicLinkEmail } from '../emails/magic-link.js';
-import { renderOtpEmail } from '../emails/otp.js';
+import { renderDeviceApprovalEmail } from '../emails/device-approval';
+import { renderMagicLinkEmail } from '../emails/magic-link';
+import { renderOtpEmail } from '../emails/otp';
 
 let _transport: Transporter | null = null;
 

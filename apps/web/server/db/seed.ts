@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import { randomBytes } from 'node:crypto';
-import * as schema from './schema/index.js';
+import * as schema from './schema/index';
 import type { AiMetadata } from '@grayprint/schemas';
 
 const url = process.env.DATABASE_URL;

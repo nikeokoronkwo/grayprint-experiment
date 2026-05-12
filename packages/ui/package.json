@@ -7,19 +7,23 @@
   "exports": {
     ".": {
       "types": "./src/index.ts",
-      "import": "./src/index.ts"
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
     },
     "./tokens": {
       "types": "./src/tokens.ts",
-      "import": "./src/tokens.ts"
+      "import": "./src/tokens.ts",
+      "default": "./src/tokens.ts"
     },
     "./gsap": {
       "types": "./src/gsap.ts",
-      "import": "./src/gsap.ts"
+      "import": "./src/gsap.ts",
+      "default": "./src/gsap.ts"
     },
     "./tailwind-preset": {
       "types": "./tailwind.preset.ts",
-      "import": "./tailwind.preset.ts"
+      "import": "./tailwind.preset.ts",
+      "default": "./tailwind.preset.ts"
     },
     "./assets/logo.svg": "./assets/logo.svg",
     "./assets/logomark.svg": "./assets/logomark.svg"

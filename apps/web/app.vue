@@ -1,6 +1,7 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: (chunk?: string) => (chunk ? `${chunk} — Grayprint` : 'Grayprint'),
+  titleTemplate: (chunk?: string) =>
+    !chunk || chunk.includes('Grayprint') ? (chunk ?? 'Grayprint') : `${chunk} — Grayprint`,
 });
 </script>
 

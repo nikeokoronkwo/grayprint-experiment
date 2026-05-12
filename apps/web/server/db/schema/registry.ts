@@ -17,7 +17,7 @@ import type {
   InstallInstruction,
   TemplatePreview,
 } from '@grayprint/schemas';
-import { user } from './auth.js';
+import { user } from './auth';
 
 /** Postgres `tsvector` custom type for full-text search. */
 const tsvector = customType<{ data: string }>({

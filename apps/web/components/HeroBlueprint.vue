@@ -97,7 +97,7 @@ onMounted(async () => {
       </div>
 
       <h1 class="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight text-ink sm:text-7xl">
-        <span data-hero-line class="block">Templates as</span>
+        <span data-hero-line class="block">Templates as </span>
         <span data-hero-line class="block">
           <span class="relative inline-block">
             <span class="relative z-10">discoverable</span>

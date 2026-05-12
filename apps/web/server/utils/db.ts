@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import * as schema from '../db/schema/index.js';
+import * as schema from '../db/schema/index';
 
 let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 let _pool: Pool | null = null;

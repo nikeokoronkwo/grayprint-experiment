@@ -1,4 +1,4 @@
-import { emailLayout } from './_layout.js';
+import { emailLayout } from './_layout';
 
 export function renderDeviceApprovalEmail(args: {
   email: string;

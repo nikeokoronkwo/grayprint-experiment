@@ -1,5 +1,5 @@
 import { boolean, index, integer, jsonb, pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core';
-import { user } from './auth.js';
+import { user } from './auth';
 
 /** better-auth `apiKey` plugin table — the agent-auth surface. */
 export const apiKey = pgTable(

@@ -1,4 +1,4 @@
-import { emailLayout } from './_layout.js';
+import { emailLayout } from './_layout';
 
 export function renderMagicLinkEmail(args: { email: string; url: string; token: string }) {
   const subject = 'Your Grayprint sign-in link';

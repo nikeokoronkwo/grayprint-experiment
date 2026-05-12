@@ -1,14 +1,14 @@
 import { and, eq, inArray } from 'drizzle-orm';
 import type { PublicTemplate, TemplateCard } from '@grayprint/schemas';
-import { useDb } from './db.js';
-import { user } from '../db/schema/auth.js';
+import { useDb } from './db';
+import { user } from '../db/schema/auth';
 import {
   category as categoryTable,
   tag as tagTable,
   template,
   templateCategory,
   templateTag,
-} from '../db/schema/registry.js';
+} from '../db/schema/registry';
 
 /** Hydrate a template row into the public-facing shape. */
 export async function hydrateTemplate(templateId: string): Promise<PublicTemplate | null> {

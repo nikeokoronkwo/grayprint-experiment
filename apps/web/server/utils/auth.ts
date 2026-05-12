@@ -9,9 +9,9 @@ import {
 } from 'better-auth/plugins';
 import { checkout, polar, portal, webhooks } from '@polar-sh/better-auth';
 import { Polar } from '@polar-sh/sdk';
-import { sendDeviceApprovalEmail, sendMagicLinkEmail, sendOtpEmail } from './email.js';
-import { recordPolarEvent } from './polar-events.js';
-import { useDb } from './db.js';
+import { sendDeviceApprovalEmail, sendMagicLinkEmail, sendOtpEmail } from './email';
+import { recordPolarEvent } from './polar-events';
+import { useDb } from './db';
 
 /**
  * Singleton better-auth instance. We construct lazily so runtimeConfig is available.

@@ -1,9 +1,9 @@
 import { eq } from 'drizzle-orm';
 import { publishRequest } from '@grayprint/schemas';
-import { useDb } from '~/server/utils/db';
-import { template, templateVersion } from '~/server/db/schema/registry';
-import { newId } from '~/server/utils/ids';
-import { principalHasScope, requirePrincipal } from '~/server/utils/principals';
+import { useDb } from '~~/server/utils/db';
+import { template, templateVersion } from '~~/server/db/schema/registry';
+import { newId } from '~~/server/utils/ids';
+import { principalHasScope, requirePrincipal } from '~~/server/utils/principals';
 
 export default defineEventHandler(async (event) => {
   const principal = await requirePrincipal(event);

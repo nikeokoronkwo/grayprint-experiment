@@ -1,9 +1,9 @@
 import { templateCreateInput } from '@grayprint/schemas';
-import { useDb } from '~/server/utils/db';
-import { template, templateCategory, templateTag } from '~/server/db/schema/registry';
-import { newId } from '~/server/utils/ids';
-import { principalHasScope, requirePrincipal } from '~/server/utils/principals';
-import { hydrateTemplate } from '~/server/utils/projections';
+import { useDb } from '~~/server/utils/db';
+import { template, templateCategory, templateTag } from '~~/server/db/schema/registry';
+import { newId } from '~~/server/utils/ids';
+import { principalHasScope, requirePrincipal } from '~~/server/utils/principals';
+import { hydrateTemplate } from '~~/server/utils/projections';
 
 export default defineEventHandler(async (event) => {
   const principal = await requirePrincipal(event);

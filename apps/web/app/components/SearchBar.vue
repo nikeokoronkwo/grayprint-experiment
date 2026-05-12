@@ -25,7 +25,7 @@ function onSubmit(e: Event) {
       :value="local"
       type="text"
       :placeholder="placeholder ?? 'Search templates, frameworks, tags…'"
-      class="w-full bg-transparent text-sm outline-none placeholder:text-ink/40"
+      class="w-full bg-transparent text-sm outline-hidden placeholder:text-ink/40"
       @input="onInput"
     />
     <kbd class="hidden rounded-md border border-ink/15 px-1.5 py-0.5 font-mono text-[10px] text-ink/50 sm:inline-flex">

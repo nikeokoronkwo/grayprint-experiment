@@ -1,4 +1,4 @@
-import type { SearchQuery, TemplateCard } from '@grayprint/schemas';
+import type { PublicTemplate, SearchQuery, TemplateCard } from '@grayprint/schemas';
 
 type SearchResult = { items: TemplateCard[]; total: number; page: number; perPage: number };
 
@@ -14,9 +14,9 @@ export function useTemplateSearch(query: () => Partial<SearchQuery>) {
 }
 
 export function useTemplate(slug: () => string) {
-  return useAsyncData(
+  return useAsyncData<PublicTemplate>(
     () => `template:${slug()}`,
-    () => $fetch(`/api/templates/${slug()}`),
+    () => $fetch<PublicTemplate>(`/api/templates/${slug()}`),
     { watch: [slug] },
   );
 }

@@ -99,7 +99,7 @@ async function verifyOtp() {
             v-model="email"
             type="email"
             required
-            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-sm outline-none focus:border-blueprint-500"
+            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-sm outline-hidden focus:border-blueprint-500"
             placeholder="you@example.com"
           />
         </label>
@@ -118,7 +118,7 @@ async function verifyOtp() {
             type="email"
             required
             :disabled="otpSent"
-            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-sm outline-none focus:border-blueprint-500 disabled:opacity-50"
+            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-sm outline-hidden focus:border-blueprint-500 disabled:opacity-50"
             placeholder="you@example.com"
           />
         </label>
@@ -130,7 +130,7 @@ async function verifyOtp() {
             pattern="[0-9]*"
             maxlength="6"
             required
-            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-center font-mono text-xl tracking-widest outline-none focus:border-blueprint-500"
+            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2.5 text-center font-mono text-xl tracking-widest outline-hidden focus:border-blueprint-500"
           />
         </label>
         <button class="btn-primary w-full" :disabled="loading">

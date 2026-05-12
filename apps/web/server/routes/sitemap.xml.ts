@@ -1,6 +1,6 @@
 import { and, desc, eq } from 'drizzle-orm';
-import { useDb } from '~/server/utils/db';
-import { category, tag, template } from '~/server/db/schema/registry';
+import { useDb } from '~~/server/utils/db';
+import { category, tag, template } from '~~/server/db/schema/registry';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();

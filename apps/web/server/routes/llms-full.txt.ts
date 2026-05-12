@@ -1,7 +1,7 @@
 import { and, desc, eq } from 'drizzle-orm';
-import { useDb } from '~/server/utils/db';
-import { template } from '~/server/db/schema/registry';
-import { hydrateTemplate } from '~/server/utils/projections';
+import { useDb } from '~~/server/utils/db';
+import { template } from '~~/server/db/schema/registry';
+import { hydrateTemplate } from '~~/server/utils/projections';
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();

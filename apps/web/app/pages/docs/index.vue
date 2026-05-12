@@ -3,6 +3,13 @@ useSeoMeta({
   title: 'Docs',
   description: 'Documentation for Grayprint — publishing, CLI, MCP, AI-readability.',
 });
+
+const { data: docs } = await useAsyncData('docs-index', () =>
+  queryCollection('docs')
+    .select('path', 'title', 'description', 'order')
+    .order('order', 'ASC')
+    .all(),
+);
 </script>
 
 <template>
@@ -16,19 +23,14 @@ useSeoMeta({
 
     <ul class="mt-10 grid gap-3">
       <NuxtLink
-        v-for="d in [
-          { to: '/docs/publishing', title: 'Publishing a template', sub: 'From local project to public listing in three commands.' },
-          { to: '/docs/cli', title: 'The CLI', sub: 'grayprint and create-grayprint — installation, auth, commands.' },
-          { to: '/docs/mcp', title: 'MCP server', sub: 'Streamable HTTP + stdio. Authenticated via agent API keys.' },
-          { to: '/docs/ai-readability', title: 'AI-readability spec', sub: 'application/grayprint+json — the machine surface every template ships.' },
-        ]"
-        :key="d.to"
-        :to="d.to"
+        v-for="d in docs ?? []"
+        :key="d.path"
+        :to="d.path"
         class="group flex items-start justify-between gap-4 rounded-xl border border-ink/10 bg-paper p-5 transition hover:-translate-y-0.5 hover:shadow-pop"
       >
         <div>
           <div class="font-display text-lg font-bold tracking-tight">{{ d.title }}</div>
-          <div class="mt-1 text-sm text-ink/60">{{ d.sub }}</div>
+          <div class="mt-1 text-sm text-ink/60">{{ d.description }}</div>
         </div>
         <Icon name="lucide:arrow-up-right" class="h-5 w-5 shrink-0 text-ink/40 transition group-hover:text-blueprint-700" />
       </NuxtLink>

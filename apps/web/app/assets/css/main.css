@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@grayprint/theme";
+@plugin "@tailwindcss/typography";
 
 /* Match @nuxtjs/color-mode's `classSuffix: ''` (applies `.dark` to <html>). */
 @custom-variant dark (&:where(.dark, .dark *));

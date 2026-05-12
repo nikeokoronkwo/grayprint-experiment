@@ -31,7 +31,64 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@vueuse/nuxt',
+    'nuxt-llms',
   ],
+
+  llms: {
+    domain: process.env.PUBLIC_SITE_URL ?? 'http://localhost:3000',
+    title: 'Grayprint',
+    description:
+      'A dynamic template marketplace where templates are content — discoverable, AI-readable, and built for both humans and agents.',
+    full: {
+      title: 'Grayprint — full catalogue',
+      description:
+        'Complete catalogue of published templates with AI-readability metadata (schemaVersion: grayprint.ai/v1).',
+    },
+    sections: [
+      {
+        title: 'Surfaces',
+        description: 'Public marketplace surfaces — filterable by kind, framework, category, and tag.',
+        links: [
+          { title: 'Marketplace index', description: 'Browse all published templates.', href: '/templates' },
+          { title: 'Template detail', description: 'Public template page with full AI-readability block at /templates/<slug>.', href: '/templates' },
+          { title: 'Search', description: 'Full-text search across titles, summaries, and content (/search?q=<query>).', href: '/search' },
+          { title: 'Categories', description: 'Browse templates organised by category.', href: '/categories' },
+          { title: 'Tags', description: 'Browse templates organised by tag (/tags/<slug>).', href: '/categories' },
+        ],
+      },
+      {
+        title: 'Machine endpoints',
+        description: 'JSON and authenticated surfaces for agents and automation.',
+        links: [
+          { title: 'Templates API', description: 'JSON list — supports ?q, ?kind, ?framework, ?category, ?tag, ?page, ?perPage.', href: '/api/templates' },
+          { title: 'Template detail API', description: 'JSON detail at /api/templates/<slug>.', href: '/api/templates' },
+          { title: 'Categories API', description: 'JSON list of categories.', href: '/api/categories' },
+          { title: 'Search API', description: 'JSON search at /api/search?q=<query>.', href: '/api/search' },
+          { title: 'MCP transport', description: 'Authenticated Streamable HTTP MCP transport — Authorization: Bearer <agent-api-key>.', href: '/api/mcp' },
+        ],
+      },
+      {
+        title: 'AI-readability',
+        description:
+          'Every public template page embeds a Schema.org SoftwareSourceCode JSON-LD block and an application/grayprint+json block with schemaVersion "grayprint.ai/v1".',
+        links: [
+          { title: 'AI-readability spec', description: 'Structured AI metadata embedded on every template page.', href: '/docs/ai-readability' },
+        ],
+      },
+      {
+        title: 'Auth for agents',
+        description:
+          'Issue an API key at /dashboard/agents and include it as Authorization: Bearer <key>. Agents authenticate against the same better-auth instance as the web and CLI clients.',
+        links: [
+          { title: 'Agent API keys', description: 'Manage agent API keys for MCP and registry access.', href: '/dashboard/agents' },
+        ],
+      },
+    ],
+    notes: [
+      'Templates are content: every public template page is SEO-indexable and machine-readable.',
+      'The application/grayprint+json block on each template page uses schemaVersion "grayprint.ai/v1".',
+    ],
+  },
 
   hub: {
     // NuxtHub v0.10+ supports a multi-vendor matrix; Postgres works on Vercel & Node alike.

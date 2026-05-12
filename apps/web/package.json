@@ -22,6 +22,7 @@
   "dependencies": {
     "@grayprint/mcp": "workspace:*",
     "@grayprint/schemas": "workspace:*",
+    "@grayprint/theme": "workspace:*",
     "@grayprint/ui": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.0.4",
     "@nuxthub/core": "^0.10.7",

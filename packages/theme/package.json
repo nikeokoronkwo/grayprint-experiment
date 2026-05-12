@@ -1,0 +1,16 @@
+{
+  "name": "@grayprint/theme",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Grayprint Tailwind 4 @theme — the design tokens, as CSS.",
+  "exports": {
+    ".": "./theme.css"
+  },
+  "files": [
+    "theme.css"
+  ],
+  "peerDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}

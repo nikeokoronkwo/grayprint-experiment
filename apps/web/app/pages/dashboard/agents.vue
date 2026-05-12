@@ -13,7 +13,7 @@ type ApiKeyRow = {
 };
 
 const { data, refresh, pending } = useAsyncData('agents:list', () =>
-  $fetch<ApiKeyRow[]>('/api/agents').catch(() => []),
+  $fetch('/api/agents').catch(() => []),
 );
 
 const showCreate = ref(false);
@@ -24,7 +24,7 @@ const creating = ref(false);
 async function create() {
   creating.value = true;
   try {
-    const res = await $fetch<ApiKeyRow & { key: string }>('/api/agents', {
+    const res = await $fetch('/api/agents', {
       method: 'POST',
       body: { name: name.value },
     });

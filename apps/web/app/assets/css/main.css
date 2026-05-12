@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../../../../../packages/ui/src/theme.css";
+@import "@grayprint/theme";
 
 /* Match @nuxtjs/color-mode's `classSuffix: ''` (applies `.dark` to <html>). */
 @custom-variant dark (&:where(.dark, .dark *));

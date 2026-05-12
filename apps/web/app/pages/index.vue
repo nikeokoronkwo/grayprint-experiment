@@ -12,7 +12,7 @@ useSeoMeta({
 });
 
 const { data: featured } = await useAsyncData('home:featured', () =>
-  $fetch<{ items: TemplateCard[] }>('/api/templates', {
+  $fetch('/api/templates', {
     query: { perPage: 6, sort: 'newest' },
   }).catch(() => ({ items: [] })),
 );

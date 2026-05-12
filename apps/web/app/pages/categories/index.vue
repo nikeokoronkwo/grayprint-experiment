@@ -13,7 +13,7 @@ useSeoMeta({
 });
 
 const { data: categories } = await useAsyncData('categories', () =>
-  $fetch<Category[]>('/api/categories').catch(() => []),
+  $fetch('/api/categories').catch(() => []),
 );
 </script>
 

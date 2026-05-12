@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Grayprint design system — design tokens, GSAP utilities, Tailwind 4 @theme.",
+  "description": "Grayprint design system — TS design tokens + GSAP utilities. (CSS theme lives in @grayprint/theme.)",
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -20,7 +20,6 @@
       "import": "./src/gsap.ts",
       "default": "./src/gsap.ts"
     },
-    "./theme.css": "./src/theme.css",
     "./assets/logo.svg": "./assets/logo.svg",
     "./assets/logomark.svg": "./assets/logomark.svg"
   },
@@ -34,12 +33,6 @@
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "tailwind-merge": "^2.6.0"
-  },
-  "peerDependencies": {
-    "tailwindcss": "^4.0.0"
-  },
-  "peerDependenciesMeta": {
-    "tailwindcss": { "optional": true }
   },
   "devDependencies": {
     "typescript": "^5.7.2"

@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Grayprint base layer
+   ───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    --background: 245 242 232; /* paper */
+    --foreground: 10 19 48;    /* ink */
+    --muted: 156 163 175;      /* ash */
+    --accent: 163 230 53;      /* lime */
+    --blueprint: 59 130 246;
+    --ring: 59 130 246;
+  }
+
+  .dark {
+    --background: 10 19 48;
+    --foreground: 245 242 232;
+    --muted: 156 163 175;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+  }
+
+  ::selection {
+    background: rgb(163 230 53 / 0.45);
+    color: #0A1330;
+  }
+
+  /* Blueprint grid background helper — apply via class="bp-grid" */
+  .bp-grid {
+    background-image:
+      linear-gradient(to right, rgba(59,130,246,0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(59,130,246,0.10) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bp-grid-paper {
+    background-color: #F5F2E8;
+    background-image:
+      linear-gradient(to right, rgba(10,19,48,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,19,48,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium
+           transition-all duration-base ease-standard
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-blueprint-500 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:-translate-y-0.5 hover:shadow-pop;
+  }
+  .btn-accent {
+    @apply btn bg-accent-400 text-ink hover:bg-accent-300 hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-ink/5;
+  }
+  .btn-outline {
+    @apply btn border border-ink/15 bg-paper text-ink hover:border-ink/30;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-pill border border-ink/10 bg-paper/80 px-2.5 py-1 text-xs font-medium text-ink/70;
+  }
+
+  .card {
+    @apply rounded-xl border border-ink/10 bg-paper shadow-card transition-all duration-base ease-standard;
+  }
+  .card:hover {
+    @apply -translate-y-0.5 shadow-pop;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+}

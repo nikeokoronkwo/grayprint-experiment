@@ -1,0 +1,61 @@
+{
+  "name": "@grayprint/schemas",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Grayprint shared domain vocabulary — Zod schemas and TypeScript types.",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./template": {
+      "types": "./src/template.ts",
+      "import": "./src/template.ts"
+    },
+    "./category": {
+      "types": "./src/category.ts",
+      "import": "./src/category.ts"
+    },
+    "./tag": {
+      "types": "./src/tag.ts",
+      "import": "./src/tag.ts"
+    },
+    "./user": {
+      "types": "./src/user.ts",
+      "import": "./src/user.ts"
+    },
+    "./entitlement": {
+      "types": "./src/entitlement.ts",
+      "import": "./src/entitlement.ts"
+    },
+    "./search": {
+      "types": "./src/search.ts",
+      "import": "./src/search.ts"
+    },
+    "./ai": {
+      "types": "./src/ai-metadata.ts",
+      "import": "./src/ai-metadata.ts"
+    },
+    "./publish": {
+      "types": "./src/publish.ts",
+      "import": "./src/publish.ts"
+    },
+    "./agent": {
+      "types": "./src/agent.ts",
+      "import": "./src/agent.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check src",
+    "clean": "rm -rf .turbo *.tsbuildinfo"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

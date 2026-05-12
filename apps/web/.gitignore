@@ -1,0 +1,9 @@
+.nuxt
+.output
+.nitro
+.cache
+.data
+.env
+.env.local
+node_modules
+*.tsbuildinfo

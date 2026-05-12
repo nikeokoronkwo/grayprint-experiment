@@ -1,0 +1,34 @@
+{
+  "name": "grayprint",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Grayprint — dynamic template marketplace and template-as-content engine.",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "db:generate": "pnpm --filter @grayprint/web db:generate",
+    "db:migrate": "pnpm --filter @grayprint/web db:migrate",
+    "db:seed": "pnpm --filter @grayprint/web db:seed",
+    "db:studio": "pnpm --filter @grayprint/web db:studio"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["@vue/compiler-sfc"]
+    }
+  }
+}

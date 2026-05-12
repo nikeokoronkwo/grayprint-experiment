@@ -1,0 +1,51 @@
+# Stray notes (kept locally, ignored from VCS)
+/2.md
+/main.md
+
+# Dependencies
+node_modules
+.pnpm-store
+.npm
+
+# Build outputs
+dist
+build
+.output
+.nuxt
+.nitro
+.cache
+.turbo
+*.tsbuildinfo
+
+# Drizzle
+**/drizzle/meta
+!packages/*/drizzle/meta
+
+# Env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Coverage
+coverage
+
+# Local data
+data
+*.sqlite
+*.sqlite-journal
+.data

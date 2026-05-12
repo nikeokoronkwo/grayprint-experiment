@@ -46,7 +46,7 @@ const accent = computed(() => {
 <template>
   <NuxtLink
     :to="`/templates/${props.template.slug}`"
-    class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-ink/10 bg-paper transition-all duration-base ease-standard hover:-translate-y-1 hover:border-ink/20 hover:shadow-pop"
+    class="group relative flex h-full flex-col overflow-hidden rounded-xl border border-ink/10 bg-paper transition-all duration-base ease-standard hover:-translate-y-1 hover:border-ink/20 hover:shadow-pop dark:border-paper/10 dark:bg-ink/60 dark:hover:border-paper/20"
   >
     <!-- Preview -->
     <div class="relative aspect-[16/10] overflow-hidden">
@@ -110,17 +110,17 @@ const accent = computed(() => {
     <div class="flex flex-1 flex-col gap-3 p-5">
       <div>
         <h3
-          class="font-display text-lg font-bold leading-tight tracking-tight text-ink transition-colors group-hover:text-blueprint-700"
+          class="font-display text-lg font-bold leading-tight tracking-tight text-ink transition-colors group-hover:text-blueprint-700 dark:text-paper dark:group-hover:text-blueprint-300"
         >
           {{ props.template.title }}
         </h3>
-        <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-ink/65">
+        <p class="mt-1.5 line-clamp-2 text-sm leading-relaxed text-ink/65 dark:text-paper/65">
           {{ props.template.summary }}
         </p>
       </div>
 
       <div class="mt-auto flex items-center justify-between gap-2 pt-1">
-        <div class="flex items-center gap-2 text-xs text-ink/55">
+        <div class="flex items-center gap-2 text-xs text-ink/55 dark:text-paper/55">
           <div
             class="grid h-5 w-5 place-items-center rounded-full bg-ink text-paper ring-1 ring-ink/5"
             aria-hidden="true"
@@ -141,11 +141,11 @@ const accent = computed(() => {
 
     <!-- AI hint footer -->
     <div
-      class="flex items-center gap-2 border-t border-ink/[0.06] bg-ink/[0.015] px-5 py-2.5 font-mono text-[10px] uppercase tracking-widest text-ink/45"
+      class="flex items-center gap-2 border-t border-ink/[0.06] bg-ink/[0.015] px-5 py-2.5 font-mono text-[10px] uppercase tracking-widest text-ink/45 dark:border-paper/[0.08] dark:bg-paper/[0.02] dark:text-paper/45"
     >
-      <Icon name="lucide:cpu" class="h-3 w-3 text-blueprint-600" />
+      <Icon name="lucide:cpu" class="h-3 w-3 text-blueprint-600 dark:text-blueprint-300" />
       <span>ai-readable</span>
-      <span class="ml-auto text-ink/30">grayprint.ai/v1</span>
+      <span class="ml-auto text-ink/30 dark:text-paper/30">grayprint.ai/v1</span>
     </div>
   </NuxtLink>
 </template>

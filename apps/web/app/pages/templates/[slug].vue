@@ -75,7 +75,7 @@ const installSnippet = computed(
 
 <template>
   <main>
-    <div class="relative overflow-hidden border-b border-ink/10 bg-paper">
+    <div class="relative overflow-hidden border-b border-ink/10 bg-paper dark:border-paper/10 dark:bg-ink">
       <div
         class="pointer-events-none absolute inset-0 opacity-100"
         :style="{
@@ -86,22 +86,22 @@ const installSnippet = computed(
         aria-hidden="true"
       />
       <div
-        class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-paper/30 to-paper"
+        class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-paper/30 to-paper dark:via-ink/30 dark:to-ink"
         aria-hidden="true"
       />
       <div class="relative mx-auto max-w-6xl px-6 py-12">
-        <div class="flex items-center gap-2 text-xs text-ink/55">
-          <NuxtLink to="/templates" class="hover:text-blueprint-700">Templates</NuxtLink>
+        <div class="flex items-center gap-2 text-xs text-ink/55 dark:text-paper/55">
+          <NuxtLink to="/templates" class="hover:text-blueprint-700 dark:hover:text-blueprint-300">Templates</NuxtLink>
           <Icon name="lucide:chevron-right" class="h-3 w-3" />
           <NuxtLink
             v-if="t.categories[0]"
             :to="`/categories/${t.categories[0].slug}`"
-            class="hover:text-blueprint-700"
+            class="hover:text-blueprint-700 dark:hover:text-blueprint-300"
           >
             {{ t.categories[0].name }}
           </NuxtLink>
           <Icon v-if="t.categories[0]" name="lucide:chevron-right" class="h-3 w-3" />
-          <span class="text-ink/70">{{ t.title }}</span>
+          <span class="text-ink/70 dark:text-paper/80">{{ t.title }}</span>
         </div>
 
         <div class="mt-6 flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
@@ -124,12 +124,12 @@ const installSnippet = computed(
               </span>
             </div>
             <h1
-              class="mt-5 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+              class="mt-5 font-display text-5xl font-bold leading-[1.05] tracking-tight text-ink dark:text-paper sm:text-6xl"
             >
               {{ t.title }}
             </h1>
-            <p class="mt-5 text-pretty text-lg leading-relaxed text-ink/70">{{ t.summary }}</p>
-            <div class="mt-7 flex flex-wrap items-center gap-3 text-sm text-ink/60">
+            <p class="mt-5 text-pretty text-lg leading-relaxed text-ink/70 dark:text-paper/70">{{ t.summary }}</p>
+            <div class="mt-7 flex flex-wrap items-center gap-3 text-sm text-ink/60 dark:text-paper/60">
               <div class="flex items-center gap-2">
                 <div
                   class="grid h-7 w-7 place-items-center rounded-full bg-ink text-paper ring-1 ring-ink/10"
@@ -138,11 +138,11 @@ const installSnippet = computed(
                     {{ (t.author.handle ?? '?').slice(0, 1).toUpperCase() }}
                   </span>
                 </div>
-                <span>by <span class="text-ink/85">{{ t.author.name ?? t.author.handle }}</span></span>
+                <span>by <span class="text-ink/85 dark:text-paper/85">{{ t.author.name ?? t.author.handle }}</span></span>
               </div>
-              <span class="text-ink/25">·</span>
+              <span class="text-ink/25 dark:text-paper/25">·</span>
               <span class="font-mono text-xs">v{{ t.version }}</span>
-              <span v-if="t.publishedAt" class="text-ink/25">·</span>
+              <span v-if="t.publishedAt" class="text-ink/25 dark:text-paper/25">·</span>
               <span v-if="t.publishedAt">
                 Published {{ new Date(t.publishedAt).toLocaleDateString() }}
               </span>
@@ -174,12 +174,12 @@ const installSnippet = computed(
               <span>View repository</span>
               <Icon name="lucide:github" class="h-4 w-4" />
             </a>
-            <div class="mt-1 flex items-center justify-between rounded-md border border-ink/10 bg-paper/70 px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink/45">
+            <div class="mt-1 flex items-center justify-between rounded-md border border-ink/10 bg-paper/70 px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink/45 dark:border-paper/10 dark:bg-ink/50 dark:text-paper/45">
               <span class="flex items-center gap-1.5">
-                <Icon name="lucide:cpu" class="h-3 w-3 text-blueprint-600" />
+                <Icon name="lucide:cpu" class="h-3 w-3 text-blueprint-600 dark:text-blueprint-300" />
                 ai-readable
               </span>
-              <span class="text-ink/35">grayprint.ai/v1</span>
+              <span class="text-ink/35 dark:text-paper/35">grayprint.ai/v1</span>
             </div>
           </div>
         </div>
@@ -195,8 +195,8 @@ const installSnippet = computed(
               overview
             </div>
           </div>
-          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight">About this template</h2>
-          <p class="mt-4 whitespace-pre-line text-pretty text-base leading-relaxed text-ink/80">
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight text-ink dark:text-paper">About this template</h2>
+          <p class="mt-4 whitespace-pre-line text-pretty text-base leading-relaxed text-ink/80 dark:text-paper/80">
             {{ t.description }}
           </p>
         </section>
@@ -208,7 +208,7 @@ const installSnippet = computed(
               install
             </div>
           </div>
-          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight">One command</h2>
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight text-ink dark:text-paper">One command</h2>
           <div class="mt-4 overflow-hidden rounded-xl border border-ink/10 bg-ink">
             <div class="flex items-center gap-2 border-b border-paper/10 px-4 py-2.5">
               <span class="h-2 w-2 rounded-full bg-spark-500/80" />
@@ -240,33 +240,33 @@ const installSnippet = computed(
               components
             </div>
           </div>
-          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight">What's inside</h2>
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-tight text-ink dark:text-paper">What's inside</h2>
           <ul class="mt-5 grid gap-3 sm:grid-cols-2">
             <li
               v-for="c in t.components"
               :key="c.name"
-              class="rounded-lg border border-ink/10 bg-paper p-4 transition hover:border-ink/20"
+              class="rounded-lg border border-ink/10 bg-paper p-4 transition hover:border-ink/20 dark:border-paper/10 dark:bg-ink/60 dark:hover:border-paper/20"
             >
               <div class="flex items-center gap-2">
-                <span class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700 dark:text-blueprint-300">
                   {{ c.registry }}
                 </span>
-                <span class="rounded bg-ink/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-ink/55">
+                <span class="rounded bg-ink/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-ink/55 dark:bg-paper/[0.06] dark:text-paper/55">
                   component
                 </span>
               </div>
-              <div class="mt-1.5 font-display text-base font-bold tracking-tight">
+              <div class="mt-1.5 font-display text-base font-bold tracking-tight text-ink dark:text-paper">
                 {{ c.name }}
               </div>
-              <div v-if="c.path" class="mt-1 font-mono text-xs text-ink/50">{{ c.path }}</div>
+              <div v-if="c.path" class="mt-1 font-mono text-xs text-ink/50 dark:text-paper/50">{{ c.path }}</div>
             </li>
           </ul>
         </section>
       </article>
 
       <aside class="space-y-5 lg:sticky lg:top-24 lg:self-start">
-        <div class="rounded-xl border border-ink/10 bg-paper p-5">
-          <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50">categories</div>
+        <div class="rounded-xl border border-ink/10 bg-paper p-5 dark:border-paper/10 dark:bg-ink/60">
+          <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50 dark:text-paper/50">categories</div>
           <div class="mt-2.5 flex flex-wrap gap-1.5">
             <NuxtLink
               v-for="c in t.categories"
@@ -278,8 +278,8 @@ const installSnippet = computed(
             </NuxtLink>
           </div>
         </div>
-        <div class="rounded-xl border border-ink/10 bg-paper p-5">
-          <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50">tags</div>
+        <div class="rounded-xl border border-ink/10 bg-paper p-5 dark:border-paper/10 dark:bg-ink/60">
+          <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50 dark:text-paper/50">tags</div>
           <div class="mt-2.5 flex flex-wrap gap-1.5">
             <NuxtLink
               v-for="tag in t.tags"

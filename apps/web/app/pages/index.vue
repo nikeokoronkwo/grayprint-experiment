@@ -28,14 +28,14 @@ const { data: featured } = await useAsyncData('home:featured', () =>
         <div>
           <div class="flex items-center gap-2">
             <span class="h-1.5 w-1.5 rounded-full bg-accent-500" aria-hidden="true" />
-            <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700">
+            <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700 dark:text-blueprint-300">
               recently published
             </div>
           </div>
-          <h2 class="mt-3 font-display text-4xl font-bold tracking-tight">
+          <h2 class="mt-3 font-display text-4xl font-bold tracking-tight text-ink dark:text-paper">
             Featured templates
           </h2>
-          <p class="mt-2 max-w-md text-pretty text-ink/60">
+          <p class="mt-2 max-w-md text-pretty text-ink/60 dark:text-paper/60">
             A hand-picked slice of the catalogue — full project starters, drop-in components, and
             agent-ready workflows.
           </p>
@@ -141,34 +141,34 @@ const { data: featured } = await useAsyncData('home:featured', () =>
     <!-- Feature row -->
     <section class="mx-auto max-w-6xl px-6 py-20 sm:py-24">
       <div class="grid gap-10 md:grid-cols-3">
-        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card">
+        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card dark:border-paper/10 dark:bg-ink/60">
           <div class="grid h-10 w-10 place-items-center rounded-lg bg-ink text-paper">
             <Icon name="lucide:terminal" class="h-4 w-4" />
           </div>
-          <h3 class="mt-5 font-display text-xl font-bold tracking-tight">Dual CLI</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink/65">
+          <h3 class="mt-5 font-display text-xl font-bold tracking-tight text-ink dark:text-paper">Dual CLI</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/65 dark:text-paper/65">
             <code class="font-mono text-blueprint-700">create-grayprint</code> bootstraps a project
             in one command.
             <code class="font-mono text-blueprint-700">grayprint</code> manages publishing, agents,
             and your registry.
           </p>
         </div>
-        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card">
+        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card dark:border-paper/10 dark:bg-ink/60">
           <div class="grid h-10 w-10 place-items-center rounded-lg bg-blueprint-500 text-paper">
             <Icon name="lucide:cpu" class="h-4 w-4" />
           </div>
-          <h3 class="mt-5 font-display text-xl font-bold tracking-tight">AI-native</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink/65">
+          <h3 class="mt-5 font-display text-xl font-bold tracking-tight text-ink dark:text-paper">AI-native</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/65 dark:text-paper/65">
             Authenticated MCP server, machine-readable metadata, and llms.txt — agents can search,
             inspect, and publish without scraping a single HTML page.
           </p>
         </div>
-        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card">
+        <div class="rounded-xl border border-ink/10 bg-paper p-6 transition hover:-translate-y-0.5 hover:shadow-card dark:border-paper/10 dark:bg-ink/60">
           <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent-400 text-ink">
             <Icon name="lucide:layers" class="h-4 w-4" />
           </div>
-          <h3 class="mt-5 font-display text-xl font-bold tracking-tight">Premium catalog</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink/65">
+          <h3 class="mt-5 font-display text-xl font-bold tracking-tight text-ink dark:text-paper">Premium catalog</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/65 dark:text-paper/65">
             Templates as content. Each page is curated, discoverable, and optimised for search —
             not a dashboard listing.
           </p>
@@ -177,18 +177,18 @@ const { data: featured } = await useAsyncData('home:featured', () =>
     </section>
 
     <!-- CTA strip -->
-    <section class="border-t border-ink/10 bg-paper">
+    <section class="border-t border-ink/10 bg-paper dark:border-paper/10 dark:bg-ink">
       <div class="mx-auto max-w-6xl px-6 py-14">
         <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 class="font-display text-3xl font-bold tracking-tight text-ink dark:text-paper sm:text-4xl">
               Ship a template in an afternoon.
             </h2>
-            <p class="mt-2 max-w-lg text-pretty text-ink/65">
+            <p class="mt-2 max-w-lg text-pretty text-ink/65 dark:text-paper/65">
               Three commands —
-              <code class="font-mono text-blueprint-700">login</code>,
-              <code class="font-mono text-blueprint-700">init</code>,
-              <code class="font-mono text-blueprint-700">publish</code>. Your detail page goes live
+              <code class="font-mono text-blueprint-700 dark:text-blueprint-300">login</code>,
+              <code class="font-mono text-blueprint-700 dark:text-blueprint-300">init</code>,
+              <code class="font-mono text-blueprint-700 dark:text-blueprint-300">publish</code>. Your detail page goes live
               instantly, fully AI-readable.
             </p>
           </div>

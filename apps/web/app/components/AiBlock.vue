@@ -7,7 +7,7 @@ const serialized = computed(() => JSON.stringify({ slug: props.slug, ...props.ai
 </script>
 
 <template>
-  <section class="relative overflow-hidden rounded-xl border border-blueprint-200 bg-ink p-6 text-paper">
+  <section class="relative overflow-hidden rounded-xl border border-blueprint-200 bg-ink p-6 text-paper dark:border-blueprint-500/40">
     <div class="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-[0.08]" aria-hidden="true" />
     <div class="relative">
       <div class="flex items-center gap-2">

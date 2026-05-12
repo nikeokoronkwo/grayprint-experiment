@@ -18,7 +18,10 @@ const isHome = computed(() => route.path === '/');
   <header
     :class="[
       'sticky top-0 z-40 border-b backdrop-blur-md transition-colors',
-      isHome ? 'border-ink/10 bg-paper/70' : 'border-ink/10 bg-paper/90',
+      'border-ink/10 dark:border-paper/10',
+      isHome
+        ? 'bg-paper/70 dark:bg-ink/70'
+        : 'bg-paper/90 dark:bg-ink/85',
     ]"
   >
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3.5">
@@ -31,13 +34,13 @@ const isHome = computed(() => route.path === '/');
           v-for="item in nav"
           :key="item.to"
           :to="item.to"
-          class="relative rounded-md px-3 py-1.5 text-sm text-ink/65 transition hover:text-ink"
-          active-class="text-ink"
+          class="relative rounded-md px-3 py-1.5 text-sm text-ink/65 transition hover:text-ink dark:text-paper/65 dark:hover:text-paper"
+          active-class="text-ink dark:text-paper"
         >
           {{ item.label }}
           <span
             v-if="route.path.startsWith(item.to)"
-            class="absolute inset-x-3 -bottom-px h-px bg-ink"
+            class="absolute inset-x-3 -bottom-px h-px bg-ink dark:bg-paper"
             aria-hidden="true"
           />
         </NuxtLink>
@@ -47,12 +50,13 @@ const isHome = computed(() => route.path === '/');
         <NuxtLink
           to="/search"
           aria-label="Search"
-          class="hidden items-center gap-2 rounded-pill border border-ink/10 bg-paper/60 px-3 py-1.5 text-xs text-ink/55 transition hover:border-ink/20 hover:text-ink/80 sm:inline-flex"
+          class="hidden items-center gap-2 rounded-pill border border-ink/10 bg-paper/60 px-3 py-1.5 text-xs text-ink/55 transition hover:border-ink/20 hover:text-ink/80 dark:border-paper/15 dark:bg-ink/40 dark:text-paper/55 dark:hover:border-paper/25 dark:hover:text-paper/80 sm:inline-flex"
         >
           <Icon name="lucide:search" class="h-3.5 w-3.5" />
           <span>Search…</span>
-          <kbd class="rounded border border-ink/15 px-1 font-mono text-[10px]">⌘K</kbd>
+          <kbd class="rounded border border-ink/15 px-1 font-mono text-[10px] dark:border-paper/20">⌘K</kbd>
         </NuxtLink>
+        <ColorModeToggle />
         <template v-if="session?.value?.data?.user">
           <NuxtLink to="/dashboard" class="btn-outline text-sm">Dashboard</NuxtLink>
         </template>

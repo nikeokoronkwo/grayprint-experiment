@@ -34,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section ref="scope" class="relative overflow-hidden bg-paper">
+  <section ref="scope" class="relative overflow-hidden bg-paper dark:bg-ink">
     <!-- layered backdrops -->
     <div
       data-hero-grid
@@ -47,7 +47,7 @@ onMounted(async () => {
       aria-hidden="true"
     />
     <div
-      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-paper/40 to-paper"
+      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-paper/40 to-paper dark:via-ink/40 dark:to-ink"
       aria-hidden="true"
     />
     <div
@@ -66,7 +66,7 @@ onMounted(async () => {
     <!-- corner annotations (blueprint vibes) -->
     <span
       data-hero-annot
-      class="pointer-events-none absolute left-6 top-6 hidden items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-blueprint-700/60 sm:flex"
+      class="pointer-events-none absolute left-6 top-6 hidden items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-blueprint-700/60 dark:text-blueprint-300/70 sm:flex"
     >
       <span class="h-2 w-2 rounded-full bg-blueprint-500" />
       A · grayprint.ai / v1
@@ -88,15 +88,15 @@ onMounted(async () => {
     <div class="relative mx-auto max-w-6xl px-6 pb-24 pt-24 sm:pb-32 sm:pt-32">
       <div
         data-hero-eyebrow
-        class="inline-flex items-center gap-2 rounded-pill border border-ink/10 bg-paper/70 px-3 py-1 backdrop-blur"
+        class="inline-flex items-center gap-2 rounded-pill border border-ink/10 bg-paper/70 px-3 py-1 backdrop-blur dark:border-paper/15 dark:bg-ink/60"
       >
         <span class="h-1.5 w-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(163,230,53,0.7)]" />
-        <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-blueprint-700">
+        <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-blueprint-700 dark:text-blueprint-300">
           level 0 · alpha
         </span>
       </div>
 
-      <h1 class="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight text-ink sm:text-7xl">
+      <h1 class="mt-7 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight text-ink dark:text-paper sm:text-7xl">
         <span data-hero-line class="block">Templates as </span>
         <span data-hero-line class="block">
           <span class="relative inline-block">
@@ -113,7 +113,7 @@ onMounted(async () => {
 
       <p
         data-hero-meta
-        class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/70"
+        class="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink/70 dark:text-paper/70"
       >
         A premium template marketplace where every template is content — SEO-strong, AI-readable,
         and shipped with a CLI and an MCP server for agents to act on.

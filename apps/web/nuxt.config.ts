@@ -31,11 +31,11 @@ export default defineNuxtConfig({
   hub: {
     // NuxtHub v0.10+ supports a multi-vendor matrix; Postgres works on Vercel & Node alike.
     // Locally, NuxtHub falls back to PGLite when DATABASE_URL is unset.
-    database: true,
+    database: true as unknown as undefined, // multi-vendor flag — typed for older preset
     blob: true,
     kv: true,
     cache: true,
-  },
+  } as Record<string, unknown>,
 
   nitro: {
     preset: isVercel ? 'vercel' : 'node-server',

@@ -45,7 +45,13 @@ const TAGS = [
   'nuxt', 'next', 'astro', 'vue', 'react', 'shadcn', 'gsap', 'tailwind', 'auth', 'ai', 'marketing', 'dashboard',
 ].map((slug) => ({ id: id('tag'), slug, name: slug.charAt(0).toUpperCase() + slug.slice(1), createdAt: now }));
 
-function ai(partial: Partial<AiMetadata> & Pick<AiMetadata, 'summary' | 'purpose'>): AiMetadata {
+type AiInput = Omit<Partial<AiMetadata>, 'compatibility'> &
+  Pick<AiMetadata, 'summary' | 'purpose'> & {
+    compatibility?: Partial<AiMetadata['compatibility']>;
+  };
+
+function ai(partial: AiInput): AiMetadata {
+  const compat = partial.compatibility ?? {};
   return {
     schemaVersion: 'grayprint.ai/v1',
     capabilities: [],
@@ -54,8 +60,12 @@ function ai(partial: Partial<AiMetadata> & Pick<AiMetadata, 'summary' | 'purpose
     requirements: [],
     installHint: '',
     examples: [],
-    compatibility: { runtimes: [], frameworks: [], package_managers: [] },
     ...partial,
+    compatibility: {
+      runtimes: compat.runtimes ?? [],
+      frameworks: compat.frameworks ?? [],
+      package_managers: compat.package_managers ?? [],
+    },
   };
 }
 

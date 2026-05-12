@@ -10,7 +10,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: parsed.error.message });
   }
   const auth = useAuth();
-  const result = await auth.api.createApiKey({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result = await (auth.api as any).createApiKey({
     headers: event.headers,
     body: {
       name: parsed.data.name,

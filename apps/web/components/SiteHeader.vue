@@ -5,7 +5,9 @@ const nav = [
   { to: '/docs', label: 'Docs' },
 ];
 
-const session = useSession();
+const session = useSession() as unknown as {
+  value?: { data?: { user?: { id: string; email: string; name?: string | null } } } | null;
+};
 </script>
 
 <template>
@@ -41,7 +43,7 @@ const session = useSession();
         <NuxtLink to="/search" aria-label="Search" class="hidden rounded-md p-2 text-ink/60 hover:bg-ink/5 hover:text-ink sm:inline-flex">
           <Icon name="lucide:search" class="h-4 w-4" />
         </NuxtLink>
-        <template v-if="session?.data?.value?.user">
+        <template v-if="session?.value?.data?.user">
           <NuxtLink to="/dashboard" class="btn-outline text-sm">Dashboard</NuxtLink>
         </template>
         <template v-else>

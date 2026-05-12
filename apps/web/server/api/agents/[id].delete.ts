@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id');
   if (!id) throw createError({ statusCode: 400, statusMessage: 'id required' });
   const auth = useAuth();
-  await auth.api.deleteApiKey({ headers: event.headers, body: { keyId: id } });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await (auth.api as any).deleteApiKey({ headers: event.headers, body: { keyId: id } });
   return { ok: true };
 });

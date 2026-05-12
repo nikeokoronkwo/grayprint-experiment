@@ -91,10 +91,23 @@ export function useAuth() {
       deviceAuthorization({
         expiresIn: '15m',
         interval: '5s',
-        async sendDeviceCodeApproval({ email, userCode, verificationUri }) {
-          await sendDeviceApprovalEmail({ email, userCode, verificationUri });
-        },
-      }),
+        // Surface the user-facing approval message via email (the option key has
+        // varied across better-auth versions; the cast keeps us compatible).
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...({
+          async sendDeviceApprovalEmail({
+            email,
+            userCode,
+            verificationUri,
+          }: {
+            email: string;
+            userCode: string;
+            verificationUri: string;
+          }) {
+            await sendDeviceApprovalEmail({ email, userCode, verificationUri });
+          },
+        } as Record<string, unknown>),
+      } as Parameters<typeof deviceAuthorization>[0]),
       apiKey({
         defaultPrefix: 'gp_',
         rateLimit: { enabled: true, timeWindow: 60_000, maxRequests: 240 },
@@ -119,7 +132,7 @@ export function useAuth() {
 }
 
 /** Helper used by every server route that needs the current user/session. */
-export async function getSession(event: ReturnType<typeof useEvent>) {
+export async function getAuthSession(event: ReturnType<typeof useEvent>) {
   const auth = useAuth();
   return await auth.api.getSession({ headers: event.headers });
 }
@@ -133,15 +146,18 @@ export async function getPrincipal(event: ReturnType<typeof useEvent>) {
   }
   const bearer = event.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (bearer) {
-    // better-auth apiKey plugin exposes a verifier
+    // better-auth apiKey plugin exposes a verifier; cast since plugin endpoints
+    // aren't reflected in the inferred auth.api type without extra wiring.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const api = auth.api as any;
     try {
-      const verified = await auth.api.verifyApiKey({ body: { key: bearer } });
+      const verified = await api.verifyApiKey?.({ body: { key: bearer } });
       if (verified?.valid && verified.key?.userId) {
         return {
           kind: 'apiKey' as const,
-          userId: verified.key.userId,
-          keyId: verified.key.id,
-          permissions: verified.key.permissions,
+          userId: verified.key.userId as string,
+          keyId: verified.key.id as string,
+          permissions: verified.key.permissions as unknown,
         };
       }
     } catch {

@@ -2,8 +2,10 @@
 definePageMeta({ layout: 'dashboard', middleware: ['auth'] });
 useSeoMeta({ title: 'Dashboard', description: 'Your Grayprint dashboard.' });
 
-const session = useSession();
-const user = computed(() => session?.data?.value?.user);
+const session = useSession() as unknown as {
+  value?: { data?: { user?: { id: string; email: string; name?: string | null } } } | null;
+};
+const user = computed(() => session?.value?.data?.user);
 
 const { data: templates } = useTemplateSearch(() => ({ perPage: 4 }));
 </script>

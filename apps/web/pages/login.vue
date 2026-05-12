@@ -3,7 +3,18 @@ definePageMeta({ layout: 'default' });
 
 useSeoMeta({ title: 'Sign in', description: 'Sign in to Grayprint.' });
 
-const authClient = useAuthClient();
+// better-auth plugin endpoints aren't reflected in the type returned by useAuthClient
+// without extra inference plumbing. Cast to the runtime-shaped interface.
+type AuthClient = {
+  signIn: {
+    magicLink: (args: { email: string; callbackURL?: string }) => Promise<unknown>;
+    emailOtp: (args: { email: string; otp: string }) => Promise<unknown>;
+  };
+  emailOtp: {
+    sendVerificationOtp: (args: { email: string; type: string }) => Promise<unknown>;
+  };
+};
+const authClient = useAuthClient() as unknown as AuthClient;
 const email = ref('');
 const sent = ref(false);
 const loading = ref(false);

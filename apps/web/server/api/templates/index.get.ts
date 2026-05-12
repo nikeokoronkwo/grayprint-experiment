@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     const links = await db
       .select({ id: templateCategory.templateId })
       .from(templateCategory)
-      .where(eq(templateCategory.categoryId, cats[0].id));
+      .where(eq(templateCategory.categoryId, cats[0]!.id));
     templateIds = links.map((l) => l.id);
     if (templateIds.length === 0) return { items: [], total: 0, page: q.page, perPage: q.perPage };
     filters.push(inArray(template.id, templateIds));
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
     const links = await db
       .select({ id: templateTag.templateId })
       .from(templateTag)
-      .where(eq(templateTag.tagId, tags[0].id));
+      .where(eq(templateTag.tagId, tags[0]!.id));
     const ids = links.map((l) => l.id);
     if (ids.length === 0) return { items: [], total: 0, page: q.page, perPage: q.perPage };
     filters.push(inArray(template.id, ids));

@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
   const db = useDb();
   const id = newId('tpl');
   const now = new Date();
+  const emptyPreview = { hero: null, thumbnail: null, gallery: [], demoUrl: null, repoUrl: null };
 
   await db.transaction(async (tx) => {
     await tx.insert(template).values({
@@ -36,7 +37,7 @@ export default defineEventHandler(async (event) => {
       pricing: input.pricing ?? 'free',
       priceCents: input.priceCents ?? 0,
       authorId: principal.userId,
-      preview: input.preview ?? {},
+      preview: input.preview ?? emptyPreview,
       install: input.install ?? [],
       components: input.components ?? [],
       dependencies: input.dependencies ?? [],

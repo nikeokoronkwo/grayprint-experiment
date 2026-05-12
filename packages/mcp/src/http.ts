@@ -1,30 +1,38 @@
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+import { randomUUID } from 'node:crypto';
 import { buildServer, type GrayprintMcpOptions } from './server.js';
 
+export type McpHttpHandler = (
+  req: IncomingMessage,
+  res: ServerResponse,
+  parsedBody?: unknown,
+) => Promise<void>;
+
 /**
- * Build a Streamable HTTP MCP transport handler. Mount it from your server framework
- * (Nuxt/Nitro, Express, Hono, etc.) — the handler accepts WHATWG Request and returns
- * Response.
+ * Build a Streamable HTTP MCP transport handler.
  *
- * Auth: the handler reads `Authorization: Bearer <key>` from the request and passes
- * it through to the underlying SDK calls. Validate the key against your registry's
- * `/api/agents/me` endpoint before invoking the transport (typically in a middleware).
+ * `StreamableHTTPServerTransport` is Node http-shaped (req/res), so this handler is
+ * meant to be mounted via h3/Nitro's `event.node.req`/`event.node.res`, Express, or
+ * any other Node http framework. Server framework adapters should also accept the
+ * pre-parsed JSON body as `parsedBody` so the transport doesn't re-read the stream.
  *
  * Example Nuxt route (apps/web/server/api/mcp.ts):
  *
  *   import { createHttpHandler } from '@grayprint/mcp/http';
- *   const handler = createHttpHandler();
- *   export default defineEventHandler((event) => handler(toWebRequest(event)));
+ *   const handlerPromise = createHttpHandler();
+ *   export default defineEventHandler(async (event) => {
+ *     const handler = await handlerPromise;
+ *     const body = await readBody(event).catch(() => undefined);
+ *     await handler(event.node.req, event.node.res, body);
+ *   });
  */
-export function createHttpHandler(opts: GrayprintMcpOptions = {}) {
-  return async (request: Request): Promise<Response> => {
-    const auth = request.headers.get('authorization') ?? undefined;
-    const token = auth?.replace(/^Bearer\s+/i, '');
-    const server = buildServer({ ...opts, token });
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: () => crypto.randomUUID(),
-    });
-    await server.connect(transport);
-    return transport.handleRequest(request);
-  };
+export async function createHttpHandler(opts: GrayprintMcpOptions = {}): Promise<McpHttpHandler> {
+  const server = buildServer(opts);
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () => randomUUID(),
+  });
+  await server.connect(transport);
+
+  return (req, res, parsedBody) => transport.handleRequest(req, res, parsedBody);
 }

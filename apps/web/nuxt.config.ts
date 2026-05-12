@@ -30,8 +30,40 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
     '@vueuse/nuxt',
   ],
+
+  // Consumed by @nuxtjs/sitemap and @nuxtjs/robots via nuxt-site-config.
+  site: {
+    url: process.env.PUBLIC_SITE_URL ?? 'http://localhost:3000',
+    name: 'Grayprint',
+  },
+
+  sitemap: {
+    // Router scan can't enumerate dynamic [slug] segments; DB-backed URLs
+    // come from /api/__sitemap__/urls instead.
+    excludeAppSources: true,
+    urls: [
+      '/',
+      '/templates',
+      '/categories',
+      '/search',
+      '/login',
+      '/docs',
+      '/docs/publishing',
+      '/docs/cli',
+      '/docs/mcp',
+      '/docs/ai-readability',
+    ],
+    sources: ['/api/__sitemap__/urls'],
+  },
+
+  robots: {
+    // The Sitemap: line is emitted automatically from site.url.
+    allow: '/',
+  },
 
   hub: {
     // NuxtHub v0.10+ supports a multi-vendor matrix; Postgres works on Vercel & Node alike.

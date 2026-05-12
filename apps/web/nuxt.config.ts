@@ -26,6 +26,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxthub/core',
+    '@nuxt/content',
     '@nuxtjs/color-mode',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -143,6 +144,11 @@ export default defineNuxtConfig({
     classSuffix: '',
     preference: 'system',
     fallback: 'light',
+  },
+
+  // @nuxt/content v3 — Node 22.5+ ships SQLite natively, so we skip the better-sqlite3 dep.
+  content: {
+    experimental: { sqliteConnector: 'native' },
   },
 
   fonts: {

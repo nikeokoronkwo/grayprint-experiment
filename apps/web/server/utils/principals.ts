@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3';
-import { getPrincipal } from './auth.js';
+import { getPrincipal } from './auth';
 
 /** Require an authenticated principal (user OR API key); throw 401 otherwise. */
 export async function requirePrincipal(event: H3Event) {

@@ -1,4 +1,4 @@
-import { emailLayout } from './_layout.js';
+import { emailLayout } from './_layout';
 
 const intent: Record<string, string> = {
   'sign-in': 'sign in to Grayprint',

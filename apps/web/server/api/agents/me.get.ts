@@ -1,4 +1,4 @@
-import { getPrincipal } from '~/server/utils/auth';
+import { getPrincipal } from '~~/server/utils/auth';
 
 /** Used by the MCP server (and SDK) to verify a bearer token and resolve the principal. */
 export default defineEventHandler(async (event) => {

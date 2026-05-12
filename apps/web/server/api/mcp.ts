@@ -1,5 +1,5 @@
 import { createHttpHandler } from '@grayprint/mcp/http';
-import { getPrincipal } from '~/server/utils/auth';
+import { getPrincipal } from '~~/server/utils/auth';
 
 /**
  * Authenticated Streamable HTTP MCP transport. Validates the bearer via better-auth

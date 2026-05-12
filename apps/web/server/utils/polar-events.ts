@@ -1,7 +1,7 @@
 import { sql } from 'drizzle-orm';
-import { useDb } from './db.js';
-import { polarEvent } from '../db/schema/entitlements.js';
-import { reconcileEntitlementsFromPolar } from './entitlements.js';
+import { useDb } from './db';
+import { polarEvent } from '../db/schema/entitlements';
+import { reconcileEntitlementsFromPolar } from './entitlements';
 
 /**
  * Persist a Polar webhook payload idempotently. Webhooks may be retried by Polar — we

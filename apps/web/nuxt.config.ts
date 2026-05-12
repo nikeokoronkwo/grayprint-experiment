@@ -1,15 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'node:url';
+import tailwindcss from '@tailwindcss/vite';
 
 const isVercel = !!process.env.VERCEL;
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-01',
   devtools: { enabled: true },
-  future: { compatibilityVersion: 4 },
 
-  srcDir: '.',
-  serverDir: 'server',
+  // Nuxt 4 defaults: srcDir is 'app/', serverDir is 'server/' at rootDir.
+  // We use the v4-native layout — see apps/web/app/.
 
   alias: {
     '@grayprint/schemas': fileURLToPath(new URL('../../packages/schemas/src/index.ts', import.meta.url)),
@@ -18,9 +18,14 @@ export default defineNuxtConfig({
     '@grayprint/ui/gsap': fileURLToPath(new URL('../../packages/ui/src/gsap.ts', import.meta.url)),
   },
 
+  css: ['~/assets/css/main.css'],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
   modules: [
     '@nuxthub/core',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -49,12 +54,6 @@ export default defineNuxtConfig({
     classSuffix: '',
     preference: 'system',
     fallback: 'light',
-  },
-
-  tailwindcss: {
-    cssPath: '~/assets/css/main.css',
-    configPath: '~/tailwind.config',
-    viewer: false,
   },
 
   fonts: {
@@ -112,9 +111,5 @@ export default defineNuxtConfig({
         { rel: 'mask-icon', href: '/favicon.svg', color: '#0A1330' },
       ],
     },
-  },
-
-  experimental: {
-    typedPages: true,
   },
 });

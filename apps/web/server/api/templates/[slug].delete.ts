@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
-import { useDb } from '~/server/utils/db';
-import { template } from '~/server/db/schema/registry';
-import { principalHasScope, requirePrincipal } from '~/server/utils/principals';
+import { useDb } from '~~/server/utils/db';
+import { template } from '~~/server/db/schema/registry';
+import { principalHasScope, requirePrincipal } from '~~/server/utils/principals';
 
 export default defineEventHandler(async (event) => {
   const principal = await requirePrincipal(event);

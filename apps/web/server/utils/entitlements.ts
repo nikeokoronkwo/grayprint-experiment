@@ -1,8 +1,8 @@
 import { and, eq, gte, isNull, lte, or } from 'drizzle-orm';
 import type { EntitlementCheck, EntitlementKind } from '@grayprint/schemas';
-import { useDb } from './db.js';
-import { entitlement } from '../db/schema/entitlements.js';
-import { template } from '../db/schema/registry.js';
+import { useDb } from './db';
+import { entitlement } from '../db/schema/entitlements';
+import { template } from '../db/schema/registry';
 
 /**
  * Check whether `userId` may access `resource` under `kind`. Free templates are open;

@@ -1,0 +1,117 @@
+/**
+ * Grayprint design tokens as Tailwind 4 @theme variables.
+ * Mirrors packages/ui/src/tokens.ts. Edit both together.
+ *
+ * Consumers: apps/web/app/assets/css/main.css imports this via
+ *   @import "@grayprint/ui/theme.css";
+ */
+
+@theme {
+  /* ── Core monochromes ──────────────────────────────────────── */
+  --color-ink: #0A1330;
+  --color-graphite: #1F2937;
+  --color-ash: #9CA3AF;
+  --color-paper: #F5F2E8;
+  --color-white: #FFFFFF;
+
+  /* ── Blueprint (primary cyan) ──────────────────────────────── */
+  --color-blueprint-50:  #EFF6FF;
+  --color-blueprint-100: #DBEAFE;
+  --color-blueprint-200: #BFDBFE;
+  --color-blueprint-300: #93C5FD;
+  --color-blueprint-400: #60A5FA;
+  --color-blueprint-500: #3B82F6;
+  --color-blueprint-600: #2563EB;
+  --color-blueprint-700: #1D4ED8;
+  --color-blueprint-800: #1E40AF;
+  --color-blueprint-900: #1E3A8A;
+
+  /* ── Accent (electric lime) ────────────────────────────────── */
+  --color-accent-50:  #F7FEE7;
+  --color-accent-100: #ECFCCB;
+  --color-accent-200: #D9F99D;
+  --color-accent-300: #BEF264;
+  --color-accent-400: #A3E635;
+  --color-accent-500: #84CC16;
+  --color-accent-600: #65A30D;
+  --color-accent-700: #4D7C0F;
+  --color-accent-800: #3F6212;
+  --color-accent-900: #365314;
+
+  /* ── Spark (hot magenta, used sparingly) ───────────────────── */
+  --color-spark-50:  #FDF2F8;
+  --color-spark-100: #FCE7F3;
+  --color-spark-200: #FBCFE8;
+  --color-spark-300: #F9A8D4;
+  --color-spark-400: #F472B6;
+  --color-spark-500: #EC4899;
+  --color-spark-600: #DB2777;
+  --color-spark-700: #BE185D;
+
+  /* ── Fonts ─────────────────────────────────────────────────── */
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Söhne", "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Border radius ─────────────────────────────────────────── */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   18px;
+  --radius-2xl:  24px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+  --shadow-card: 0 1px 0 rgba(10, 19, 48, 0.04), 0 8px 24px -8px rgba(10, 19, 48, 0.12);
+  --shadow-pop:  0 2px 0 rgba(10, 19, 48, 0.06), 0 24px 48px -16px rgba(10, 19, 48, 0.22);
+  --shadow-glow: 0 0 0 1px rgba(163, 230, 53, 0.4), 0 12px 32px -8px rgba(163, 230, 53, 0.45);
+
+  /* ── Easing ────────────────────────────────────────────────── */
+  --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-emphatic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy:   cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Transition durations ──────────────────────────────────── */
+  --duration-fast:  160ms;
+  --duration-base:  240ms;
+  --duration-slow:  440ms;
+  --duration-grand: 760ms;
+
+  /* ── Background images ─────────────────────────────────────── */
+  --background-image-blueprint-grid:
+    linear-gradient(to right, rgba(59,130,246,0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59,130,246,0.10) 1px, transparent 1px);
+  --background-image-blueprint-grid-dense:
+    linear-gradient(to right, rgba(59,130,246,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59,130,246,0.18) 1px, transparent 1px);
+  --background-image-accent-zing:
+    radial-gradient(60% 60% at 50% 50%, rgba(163,230,53,0.45) 0%, rgba(163,230,53,0) 70%);
+
+  /* ── Animations ────────────────────────────────────────────── */
+  --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
+  --animate-grid-drift: grid-drift 18s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.03); }
+}
+
+@keyframes grid-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
+
+/*
+ * `bg-grid` / `bg-grid-dense` set background-size, not background-image.
+ * Tailwind 4 has no `--background-size-*` namespace, so these are explicit
+ * utilities that survive scanning and stay overridable by Tailwind utilities.
+ */
+@utility bg-grid {
+  background-size: 32px 32px;
+}
+
+@utility bg-grid-dense {
+  background-size: 8px 8px;
+}

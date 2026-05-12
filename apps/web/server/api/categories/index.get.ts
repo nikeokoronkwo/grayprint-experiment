@@ -1,6 +1,6 @@
 import { asc } from 'drizzle-orm';
-import { useDb } from '~/server/utils/db';
-import { category } from '~/server/db/schema/registry';
+import { useDb } from '~~/server/utils/db';
+import { category } from '~~/server/db/schema/registry';
 
 export default defineEventHandler(async () => {
   const db = useDb();

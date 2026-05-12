@@ -13,7 +13,7 @@ type ApiKeyRow = {
 };
 
 const { data, refresh, pending } = useAsyncData('agents:list', () =>
-  $fetch<ApiKeyRow[]>('/api/agents').catch(() => []),
+  $fetch('/api/agents').catch(() => []),
 );
 
 const showCreate = ref(false);
@@ -24,7 +24,7 @@ const creating = ref(false);
 async function create() {
   creating.value = true;
   try {
-    const res = await $fetch<ApiKeyRow & { key: string }>('/api/agents', {
+    const res = await $fetch('/api/agents', {
       method: 'POST',
       body: { name: name.value },
     });
@@ -73,7 +73,7 @@ async function revoke(id: string) {
             v-model="name"
             required
             placeholder="e.g. claude-desktop"
-            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm outline-none focus:border-blueprint-500"
+            class="mt-1 w-full rounded-md border border-ink/15 bg-paper px-3 py-2 text-sm outline-hidden focus:border-blueprint-500"
           />
         </label>
         <button class="btn-primary" :disabled="creating">{{ creating ? '…' : 'Create' }}</button>

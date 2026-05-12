@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { TemplateCard } from '@grayprint/schemas';
 
+useHead({ title: 'Grayprint — the blueprint for templates' });
 useSeoMeta({
-  title: 'Grayprint',
   description:
     'A dynamic template marketplace where templates are content — discoverable, AI-readable, and built for both humans and agents.',
   ogTitle: 'Grayprint — the blueprint for templates',
@@ -12,7 +12,7 @@ useSeoMeta({
 });
 
 const { data: featured } = await useAsyncData('home:featured', () =>
-  $fetch<{ items: TemplateCard[] }>('/api/templates', {
+  $fetch('/api/templates', {
     query: { perPage: 6, sort: 'newest' },
   }).catch(() => ({ items: [] })),
 );

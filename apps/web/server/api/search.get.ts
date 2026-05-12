@@ -1,8 +1,8 @@
 import { and, desc, eq, sql } from 'drizzle-orm';
 import { searchQuery } from '@grayprint/schemas';
-import { useDb } from '~/server/utils/db';
-import { template } from '~/server/db/schema/registry';
-import { hydrateTemplateCards } from '~/server/utils/projections';
+import { useDb } from '~~/server/utils/db';
+import { template } from '~~/server/db/schema/registry';
+import { hydrateTemplateCards } from '~~/server/utils/projections';
 
 export default defineEventHandler(async (event) => {
   const parsed = searchQuery.safeParse(getQuery(event));

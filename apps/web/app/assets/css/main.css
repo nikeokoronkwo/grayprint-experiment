@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import "@grayprint/theme";
+
+/* Match @nuxtjs/color-mode's `classSuffix: ''` (applies `.dark` to <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Legacy RGB triplets for any rgb(var(--…) / x) consumers ───────── */
+:root {
+  --background: 245 242 232;
+  --foreground: 10 19 48;
+  --muted: 156 163 175;
+  --accent: 163 230 53;
+  --blueprint: 59 130 246;
+  --ring: 59 130 246;
+}
+
+.dark {
+  --background: 10 19 48;
+  --foreground: 245 242 232;
+  --muted: 156 163 175;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgb(163 230 53 / 0.45);
+  color: #0A1330;
+}
+
+/* ── Blueprint grid background helpers ─────────────────────────────── */
+.bp-grid {
+  background-image:
+    linear-gradient(to right, rgba(59,130,246,0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59,130,246,0.10) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bp-grid-paper {
+  background-color: #F5F2E8;
+  background-image:
+    linear-gradient(to right, rgba(10,19,48,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10,19,48,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Component utilities (v4 @utility) ─────────────────────────────── */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition-property: color, background-color, border-color, transform, box-shadow, opacity;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-standard);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-paper), 0 0 0 4px var(--color-blueprint-500);
+  }
+}
+
+@utility btn-primary {
+  @apply btn;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-pop);
+  }
+}
+
+@utility btn-accent {
+  @apply btn;
+  background-color: var(--color-accent-400);
+  color: var(--color-ink);
+
+  &:hover {
+    background-color: var(--color-accent-300);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@utility btn-ghost {
+  @apply btn;
+  background-color: transparent;
+  color: var(--color-ink);
+
+  &:hover {
+    background-color: rgba(10, 19, 48, 0.05);
+  }
+}
+
+@utility btn-outline {
+  @apply btn;
+  border: 1px solid rgba(10, 19, 48, 0.15);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+
+  &:hover {
+    border-color: rgba(10, 19, 48, 0.3);
+  }
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(10, 19, 48, 0.1);
+  background-color: rgb(245 242 232 / 0.8);
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(10, 19, 48, 0.7);
+}
+
+@utility card {
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(10, 19, 48, 0.1);
+  background-color: var(--color-paper);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-pop);
+  }
+}

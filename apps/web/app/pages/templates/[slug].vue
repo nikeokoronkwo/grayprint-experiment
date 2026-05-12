@@ -5,7 +5,7 @@ const route = useRoute();
 const slug = route.params.slug as string;
 
 const { data, error } = await useAsyncData(`tpl:${slug}`, () =>
-  $fetch<PublicTemplate>(`/api/templates/${slug}`),
+  $fetch(`/api/templates/${slug}`),
 );
 
 if (error.value || !data.value) {

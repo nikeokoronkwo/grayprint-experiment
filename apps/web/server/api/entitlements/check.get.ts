@@ -1,5 +1,5 @@
-import { checkEntitlement } from '~/server/utils/entitlements';
-import { getPrincipal } from '~/server/utils/auth';
+import { checkEntitlement } from '~~/server/utils/entitlements';
+import { getPrincipal } from '~~/server/utils/auth';
 import type { EntitlementKind } from '@grayprint/schemas';
 
 export default defineEventHandler(async (event) => {

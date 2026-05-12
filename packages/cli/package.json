@@ -1,0 +1,37 @@
+{
+  "name": "@grayprint/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "grayprint — management CLI for the Grayprint template marketplace.",
+  "bin": {
+    "grayprint": "./bin/grayprint.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check src",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.8.2",
+    "@grayprint/cli-core": "workspace:*",
+    "@grayprint/mcp": "workspace:*",
+    "@grayprint/schemas": "workspace:*",
+    "@grayprint/sdk": "workspace:*",
+    "cac": "^6.7.14",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

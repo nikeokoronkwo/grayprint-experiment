@@ -1,0 +1,27 @@
+{
+  "name": "create-grayprint",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Bootstrap a new project from a Grayprint template.",
+  "bin": {
+    "create-grayprint": "./bin/create-grayprint.mjs"
+  },
+  "scripts": {
+    "dev": "tsx src/create.ts",
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check src",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.8.2",
+    "@grayprint/cli-core": "workspace:*",
+    "@grayprint/sdk": "workspace:*",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

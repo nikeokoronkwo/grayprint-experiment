@@ -35,6 +35,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.dark body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
 ::selection {
   background: rgb(163 230 53 / 0.45);
   color: #0A1330;

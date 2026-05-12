@@ -64,13 +64,13 @@ function toggleFramework(v: NonNullable<SearchQuery['framework']>) {
       <div>
         <div class="flex items-center gap-2">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-500" aria-hidden="true" />
-          <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700">
+          <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700 dark:text-blueprint-300">
             marketplace
           </div>
         </div>
-        <h1 class="mt-3 font-display text-5xl font-bold tracking-tight">Templates</h1>
-        <p class="mt-3 max-w-xl text-pretty text-ink/65">
-          <span class="font-medium text-ink">{{ data?.total ?? 0 }}</span> published — starters,
+        <h1 class="mt-3 font-display text-5xl font-bold tracking-tight text-ink dark:text-paper">Templates</h1>
+        <p class="mt-3 max-w-xl text-pretty text-ink/65 dark:text-paper/65">
+          <span class="font-medium text-ink dark:text-paper">{{ data?.total ?? 0 }}</span> published — starters,
           components, themes, and agent-ready workflows.
         </p>
       </div>
@@ -80,15 +80,15 @@ function toggleFramework(v: NonNullable<SearchQuery['framework']>) {
     </header>
 
     <div class="mb-6 flex flex-wrap items-center gap-2">
-      <span class="font-mono text-[10px] uppercase tracking-widest text-ink/50">kind</span>
+      <span class="font-mono text-[10px] uppercase tracking-widest text-ink/50 dark:text-paper/50">kind</span>
       <button
         v-for="k in kinds"
         :key="k.value"
         :class="[
           'chip transition',
           kind === k.value
-            ? 'border-ink bg-ink text-paper'
-            : 'hover:border-ink/25',
+            ? 'border-ink bg-ink text-paper dark:border-paper dark:bg-paper dark:text-ink'
+            : 'hover:border-ink/25 dark:hover:border-paper/25',
         ]"
         @click="toggleKind(k.value)"
       >
@@ -96,15 +96,15 @@ function toggleFramework(v: NonNullable<SearchQuery['framework']>) {
       </button>
     </div>
     <div class="mb-10 flex flex-wrap items-center gap-2">
-      <span class="font-mono text-[10px] uppercase tracking-widest text-ink/50">framework</span>
+      <span class="font-mono text-[10px] uppercase tracking-widest text-ink/50 dark:text-paper/50">framework</span>
       <button
         v-for="f in frameworks"
         :key="f.value"
         :class="[
           'chip transition',
           framework === f.value
-            ? 'border-blueprint-500 bg-blueprint-50 text-blueprint-700'
-            : 'hover:border-ink/25',
+            ? 'border-blueprint-500 bg-blueprint-50 text-blueprint-700 dark:bg-blueprint-500/15 dark:text-blueprint-200'
+            : 'hover:border-ink/25 dark:hover:border-paper/25',
         ]"
         @click="toggleFramework(f.value)"
       >

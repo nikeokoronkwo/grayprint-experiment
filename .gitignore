@@ -49,3 +49,5 @@ data
 *.sqlite
 *.sqlite-journal
 .data
+
+apps/web/.data/TODO.md

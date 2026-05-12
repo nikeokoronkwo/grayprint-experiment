@@ -6,13 +6,44 @@ defineProps<{ templates: TemplateCard[]; loading?: boolean }>();
 
 <template>
   <div v-if="loading && templates.length === 0" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    <div v-for="i in 6" :key="i" class="aspect-[16/22] animate-pulse rounded-xl border border-ink/10 bg-ink/[0.02]" />
+    <div
+      v-for="i in 6"
+      :key="i"
+      class="overflow-hidden rounded-xl border border-ink/10 bg-paper"
+    >
+      <div class="relative aspect-[16/10] overflow-hidden bg-ink/[0.04]">
+        <div
+          class="absolute inset-0 -translate-x-full animate-[shimmer_1.6s_infinite] bg-gradient-to-r from-transparent via-paper/70 to-transparent"
+        />
+      </div>
+      <div class="space-y-3 p-5">
+        <div class="h-4 w-2/3 rounded bg-ink/[0.06]" />
+        <div class="h-3 w-full rounded bg-ink/[0.04]" />
+        <div class="h-3 w-4/5 rounded bg-ink/[0.04]" />
+      </div>
+    </div>
   </div>
-  <div v-else-if="templates.length === 0" class="rounded-xl border border-dashed border-ink/15 p-10 text-center">
-    <div class="font-display text-xl font-bold text-ink/80">Nothing here yet.</div>
-    <div class="mt-1 text-sm text-ink/60">Try a different filter, or publish the first one yourself.</div>
-  </div>
+
+  <EmptyState
+    v-else-if="templates.length === 0"
+    icon="lucide:layers"
+    title="No templates match"
+    description="Try a different combination of filters, or publish the first one yourself."
+  >
+    <NuxtLink to="/docs/publishing" class="btn-outline mt-5 text-sm">
+      How to publish →
+    </NuxtLink>
+  </EmptyState>
+
   <div v-else class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     <TemplateCard v-for="t in templates" :key="t.id" :template="t" />
   </div>
 </template>
+
+<style scoped>
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+</style>

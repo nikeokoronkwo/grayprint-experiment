@@ -62,10 +62,16 @@ function toggleFramework(v: NonNullable<SearchQuery['framework']>) {
   <main class="mx-auto max-w-6xl px-6 py-12">
     <header class="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700">marketplace</div>
-        <h1 class="mt-1 font-display text-4xl font-bold tracking-tight">Templates</h1>
-        <p class="mt-2 max-w-xl text-pretty text-ink/65">
-          {{ data?.total ?? 0 }} published — starters, components, themes, and agent-ready workflows.
+        <div class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-500" aria-hidden="true" />
+          <div class="font-mono text-[10px] uppercase tracking-widest text-blueprint-700">
+            marketplace
+          </div>
+        </div>
+        <h1 class="mt-3 font-display text-5xl font-bold tracking-tight">Templates</h1>
+        <p class="mt-3 max-w-xl text-pretty text-ink/65">
+          <span class="font-medium text-ink">{{ data?.total ?? 0 }}</span> published — starters,
+          components, themes, and agent-ready workflows.
         </p>
       </div>
       <div class="w-full sm:w-96">

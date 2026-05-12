@@ -3,12 +3,30 @@ defineProps<{ title: string; description?: string; icon?: string }>();
 </script>
 
 <template>
-  <div class="rounded-xl border border-dashed border-ink/15 px-6 py-12 text-center">
-    <div v-if="icon" class="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full bg-ink/5 text-ink/50">
-      <Icon :name="icon" class="h-5 w-5" />
+  <div
+    class="relative overflow-hidden rounded-xl border border-dashed border-ink/15 bg-paper/60 px-6 py-14 text-center"
+  >
+    <div
+      class="pointer-events-none absolute inset-0 opacity-40"
+      :style="{
+        backgroundImage:
+          'linear-gradient(to right, rgba(10,19,48,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(10,19,48,0.04) 1px, transparent 1px)',
+        backgroundSize: '16px 16px',
+      }"
+      aria-hidden="true"
+    />
+    <div class="relative">
+      <div
+        v-if="icon"
+        class="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-xl border border-ink/10 bg-paper text-ink/55 shadow-card"
+      >
+        <Icon :name="icon" class="h-5 w-5" />
+      </div>
+      <div class="font-display text-xl font-bold tracking-tight text-ink/85">{{ title }}</div>
+      <p v-if="description" class="mx-auto mt-1.5 max-w-sm text-sm leading-relaxed text-ink/55">
+        {{ description }}
+      </p>
+      <slot />
     </div>
-    <div class="font-display text-xl font-bold text-ink/85">{{ title }}</div>
-    <p v-if="description" class="mt-1 text-sm text-ink/60">{{ description }}</p>
-    <slot />
   </div>
 </template>

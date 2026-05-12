@@ -3,44 +3,80 @@ const year = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="border-t border-ink/10 bg-paper">
-    <div class="mx-auto grid max-w-6xl gap-8 px-6 py-14 sm:grid-cols-4">
-      <div class="sm:col-span-2">
-        <div class="flex items-center gap-2 font-display text-lg font-bold">
-          <span class="relative grid h-7 w-7 place-items-center rounded-md bg-ink text-paper">
-            <span class="font-mono text-[11px] font-bold">g</span>
-          </span>
-          grayprint
-        </div>
-        <p class="mt-3 max-w-sm text-pretty text-sm text-ink/60">
+  <footer class="relative overflow-hidden border-t border-ink/10 bg-paper">
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      :style="{
+        background:
+          'linear-gradient(to right, transparent 0%, rgba(59,130,246,0.4) 30%, rgba(163,230,53,0.6) 70%, transparent 100%)',
+      }"
+      aria-hidden="true"
+    />
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <NuxtLink to="/"><Logo size="md" /></NuxtLink>
+        <p class="mt-4 max-w-sm text-pretty text-sm text-ink/60">
           Premium templates as discoverable, AI-readable content. Built for humans and agents.
         </p>
-        <div class="mt-5 inline-flex h-1.5 w-12 rounded-full bg-accent-400" aria-hidden="true" />
+        <div class="mt-6 flex items-center gap-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink/45">level</span>
+          <span class="inline-flex h-1 w-12 rounded-full bg-accent-400" aria-hidden="true" />
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink/45">0 · alpha</span>
+        </div>
       </div>
-      <div>
-        <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50">Product</div>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li><NuxtLink to="/templates" class="hover:text-blueprint-700">Templates</NuxtLink></li>
-          <li><NuxtLink to="/categories" class="hover:text-blueprint-700">Categories</NuxtLink></li>
-          <li><NuxtLink to="/search" class="hover:text-blueprint-700">Search</NuxtLink></li>
-          <li><NuxtLink to="/dashboard" class="hover:text-blueprint-700">Dashboard</NuxtLink></li>
+
+      <div class="md:col-span-2">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-ink/45">Marketplace</div>
+        <ul class="mt-3 space-y-2 text-sm text-ink/70">
+          <li><NuxtLink to="/templates" class="hover:text-ink">Templates</NuxtLink></li>
+          <li><NuxtLink to="/categories" class="hover:text-ink">Categories</NuxtLink></li>
+          <li><NuxtLink to="/search" class="hover:text-ink">Search</NuxtLink></li>
+          <li><NuxtLink to="/dashboard" class="hover:text-ink">Dashboard</NuxtLink></li>
         </ul>
       </div>
-      <div>
-        <div class="font-mono text-[10px] uppercase tracking-widest text-ink/50">Develop</div>
+
+      <div class="md:col-span-2">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-ink/45">Develop</div>
+        <ul class="mt-3 space-y-2 text-sm text-ink/70">
+          <li><NuxtLink to="/docs" class="hover:text-ink">Docs</NuxtLink></li>
+          <li><NuxtLink to="/docs/cli" class="hover:text-ink">CLI</NuxtLink></li>
+          <li><NuxtLink to="/docs/mcp" class="hover:text-ink">MCP</NuxtLink></li>
+          <li><NuxtLink to="/docs/ai-readability" class="hover:text-ink">AI spec</NuxtLink></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="font-mono text-[10px] uppercase tracking-widest text-ink/45">For agents</div>
         <ul class="mt-3 space-y-2 text-sm">
-          <li><NuxtLink to="/docs" class="hover:text-blueprint-700">Docs</NuxtLink></li>
-          <li><NuxtLink to="/docs/cli" class="hover:text-blueprint-700">CLI</NuxtLink></li>
-          <li><NuxtLink to="/docs/mcp" class="hover:text-blueprint-700">MCP</NuxtLink></li>
-          <li><a href="/llms.txt" class="hover:text-blueprint-700">llms.txt</a></li>
-          <li><a href="/llms-full.txt" class="hover:text-blueprint-700">llms-full.txt</a></li>
+          <li>
+            <a href="/llms.txt" class="group inline-flex items-center gap-1.5 text-ink/70 hover:text-ink">
+              <Icon name="lucide:file-text" class="h-3.5 w-3.5 text-blueprint-600" />
+              llms.txt
+              <Icon name="lucide:arrow-up-right" class="h-3 w-3 opacity-0 transition group-hover:opacity-100" />
+            </a>
+          </li>
+          <li>
+            <a href="/llms-full.txt" class="group inline-flex items-center gap-1.5 text-ink/70 hover:text-ink">
+              <Icon name="lucide:file-text" class="h-3.5 w-3.5 text-blueprint-600" />
+              llms-full.txt
+              <Icon name="lucide:arrow-up-right" class="h-3 w-3 opacity-0 transition group-hover:opacity-100" />
+            </a>
+          </li>
+          <li>
+            <span class="inline-flex items-center gap-1.5 text-ink/70">
+              <Icon name="lucide:cpu" class="h-3.5 w-3.5 text-accent-500" />
+              <code class="font-mono">/api/mcp</code>
+              <span class="rounded-pill bg-accent-100 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-accent-900">auth</span>
+            </span>
+          </li>
         </ul>
       </div>
     </div>
+
     <div class="border-t border-ink/10">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-xs text-ink/50">
-        <div>© {{ year }} Grayprint</div>
-        <div class="font-mono">v0.0.0 · level 0</div>
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5 text-xs text-ink/45">
+        <div>© {{ year }} Grayprint. The blueprint for templates.</div>
+        <div class="hidden font-mono sm:block">v0.0.0 · {{ new Date().toISOString().slice(0, 10) }}</div>
       </div>
     </div>
   </footer>

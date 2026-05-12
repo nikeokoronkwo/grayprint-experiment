@@ -105,17 +105,53 @@ async function revoke(id: string) {
               />
             </td>
           </tr>
-          <tr v-for="row in data" :key="row.id" class="border-t border-ink/10">
-            <td class="px-4 py-3 font-medium">{{ row.name }}</td>
-            <td class="px-4 py-3 font-mono text-xs text-ink/60">{{ row.start ?? '••••' }}…</td>
-            <td class="px-4 py-3 text-ink/60">
+          <tr
+            v-for="row in data"
+            :key="row.id"
+            class="border-t border-ink/10 transition hover:bg-ink/[0.015]"
+          >
+            <td class="px-4 py-4">
+              <div class="flex items-center gap-2.5">
+                <div class="grid h-7 w-7 place-items-center rounded-lg bg-ink text-paper">
+                  <Icon name="lucide:bot" class="h-3.5 w-3.5" />
+                </div>
+                <div class="min-w-0">
+                  <div class="truncate font-medium">{{ row.name }}</div>
+                  <div class="font-mono text-[10px] text-ink/40">
+                    {{ new Date(row.createdAt).toLocaleDateString() }}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-4">
+              <code class="rounded bg-ink/[0.04] px-1.5 py-0.5 font-mono text-[11px] text-ink/65">
+                {{ row.start ?? '••••' }}…
+              </code>
+            </td>
+            <td class="px-4 py-4 text-ink/60">
               {{ row.lastRequest ? new Date(row.lastRequest).toLocaleString() : '—' }}
             </td>
-            <td class="px-4 py-3 text-ink/60">
-              {{ row.expiresAt ? new Date(row.expiresAt).toLocaleDateString() : 'never' }}
+            <td class="px-4 py-4">
+              <span
+                v-if="row.expiresAt"
+                class="font-mono text-xs text-ink/60"
+              >
+                {{ new Date(row.expiresAt).toLocaleDateString() }}
+              </span>
+              <span
+                v-else
+                class="inline-flex items-center gap-1 rounded-pill bg-accent-100 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-accent-900"
+              >
+                never
+              </span>
             </td>
-            <td class="px-4 py-3 text-right">
-              <button class="text-xs text-spark-600 hover:underline" @click="revoke(row.id)">Revoke</button>
+            <td class="px-4 py-4 text-right">
+              <button
+                class="rounded-md px-2 py-1 text-xs text-spark-700 transition hover:bg-spark-50"
+                @click="revoke(row.id)"
+              >
+                Revoke
+              </button>
             </td>
           </tr>
         </tbody>

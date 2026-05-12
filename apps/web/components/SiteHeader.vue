@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
+
 const nav = [
   { to: '/templates', label: 'Templates' },
   { to: '/categories', label: 'Categories' },
@@ -8,47 +10,58 @@ const nav = [
 const session = useSession() as unknown as {
   value?: { data?: { user?: { id: string; email: string; name?: string | null } } } | null;
 };
+
+const isHome = computed(() => route.path === '/');
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-ink/10 bg-paper/85 backdrop-blur-md">
+  <header
+    :class="[
+      'sticky top-0 z-40 border-b backdrop-blur-md transition-colors',
+      isHome ? 'border-ink/10 bg-paper/70' : 'border-ink/10 bg-paper/90',
+    ]"
+  >
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3.5">
-      <NuxtLink to="/" class="flex items-center gap-2 font-display text-base font-bold tracking-tight">
-        <span
-          class="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg bg-ink text-paper"
-          aria-hidden="true"
-        >
-          <span class="absolute inset-0 bg-grid bg-blueprint-grid-dense opacity-30" />
-          <span class="relative font-display text-sm font-bold">g</span>
-          <span
-            class="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-accent-400 shadow-[0_0_12px_rgba(163,230,53,0.7)]"
-          />
-        </span>
-        grayprint
+      <NuxtLink to="/" class="-mx-1 rounded-md p-1 transition hover:opacity-90">
+        <Logo size="md" />
       </NuxtLink>
 
-      <nav class="hidden items-center gap-1 sm:flex">
+      <nav class="hidden items-center gap-0.5 sm:flex">
         <NuxtLink
           v-for="item in nav"
           :key="item.to"
           :to="item.to"
-          class="rounded-md px-3 py-1.5 text-sm text-ink/70 transition hover:bg-ink/5 hover:text-ink"
-          active-class="bg-ink/5 text-ink"
+          class="relative rounded-md px-3 py-1.5 text-sm text-ink/65 transition hover:text-ink"
+          active-class="text-ink"
         >
           {{ item.label }}
+          <span
+            v-if="route.path.startsWith(item.to)"
+            class="absolute inset-x-3 -bottom-px h-px bg-ink"
+            aria-hidden="true"
+          />
         </NuxtLink>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <NuxtLink to="/search" aria-label="Search" class="hidden rounded-md p-2 text-ink/60 hover:bg-ink/5 hover:text-ink sm:inline-flex">
-          <Icon name="lucide:search" class="h-4 w-4" />
+      <div class="flex items-center gap-1.5">
+        <NuxtLink
+          to="/search"
+          aria-label="Search"
+          class="hidden items-center gap-2 rounded-pill border border-ink/10 bg-paper/60 px-3 py-1.5 text-xs text-ink/55 transition hover:border-ink/20 hover:text-ink/80 sm:inline-flex"
+        >
+          <Icon name="lucide:search" class="h-3.5 w-3.5" />
+          <span>Search…</span>
+          <kbd class="rounded border border-ink/15 px-1 font-mono text-[10px]">⌘K</kbd>
         </NuxtLink>
         <template v-if="session?.value?.data?.user">
           <NuxtLink to="/dashboard" class="btn-outline text-sm">Dashboard</NuxtLink>
         </template>
         <template v-else>
           <NuxtLink to="/login" class="btn-ghost text-sm">Sign in</NuxtLink>
-          <NuxtLink to="/templates" class="btn-accent text-sm">Browse</NuxtLink>
+          <NuxtLink to="/templates" class="btn-accent text-sm">
+            <span>Browse</span>
+            <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+          </NuxtLink>
         </template>
       </div>
     </div>

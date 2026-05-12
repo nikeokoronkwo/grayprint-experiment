@@ -6,7 +6,7 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-paper text-ink">
+  <div class="min-h-screen bg-paper text-ink dark:bg-ink dark:text-paper">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

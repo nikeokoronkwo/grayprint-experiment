@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'Docs',
-  description: 'Documentation for Grayprint — publishing, CLI, MCP, AI-readability.',
+  description: 'Documentation for Grayprint — the marketplace, the CLI, authoring templates, the MCP server, and the AI-readability spec.',
 });
 
 const { data: docs } = await useAsyncData('docs-index', () =>
@@ -18,7 +18,8 @@ const { data: docs } = await useAsyncData('docs-index', () =>
     <h1 class="mt-1 font-display text-4xl font-bold tracking-tight">The blueprint</h1>
     <p class="mt-3 text-pretty text-ink/70">
       Grayprint is a dynamic template marketplace where every template is content. The docs below
-      cover publishing, the CLI, the MCP server, and the AI-readability spec.
+      cover what Grayprint is, using the marketplace, authoring and publishing templates, the CLIs,
+      the MCP server, and the AI-readability spec.
     </p>
 
     <ul class="mt-10 grid gap-3">

@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray } from 'drizzle-orm';
+import { and, count, desc, eq, inArray } from 'drizzle-orm';
 import { searchQuery } from '@grayprint/schemas';
 import { useDb } from '~~/server/utils/db';
 import { template, templateCategory, templateTag, category, tag } from '~~/server/db/schema/registry';
@@ -17,7 +17,6 @@ export default defineEventHandler(async (event) => {
   if (q.framework) filters.push(eq(template.framework, q.framework));
   if (q.pricing) filters.push(eq(template.pricing, q.pricing));
 
-  let templateIds: string[] | null = null;
   if (q.category) {
     const cats = await db.select({ id: category.id }).from(category).where(eq(category.slug, q.category));
     if (cats.length === 0) return { items: [], total: 0, page: q.page, perPage: q.perPage };
@@ -25,9 +24,9 @@ export default defineEventHandler(async (event) => {
       .select({ id: templateCategory.templateId })
       .from(templateCategory)
       .where(eq(templateCategory.categoryId, cats[0]!.id));
-    templateIds = links.map((l) => l.id);
-    if (templateIds.length === 0) return { items: [], total: 0, page: q.page, perPage: q.perPage };
-    filters.push(inArray(template.id, templateIds));
+    const ids = links.map((l) => l.id);
+    if (ids.length === 0) return { items: [], total: 0, page: q.page, perPage: q.perPage };
+    filters.push(inArray(template.id, ids));
   }
   if (q.tag) {
     const tags = await db.select({ id: tag.id }).from(tag).where(eq(tag.slug, q.tag));
@@ -41,19 +40,25 @@ export default defineEventHandler(async (event) => {
     filters.push(inArray(template.id, ids));
   }
 
-  const rows = await db
-    .select({ id: template.id })
-    .from(template)
-    .where(and(...filters))
-    .orderBy(desc(template.publishedAt))
-    .limit(q.perPage)
-    .offset((q.page - 1) * q.perPage);
+  const where = and(...filters);
+
+  const [rows, [totals]] = await Promise.all([
+    db
+      .select({ id: template.id })
+      .from(template)
+      .where(where)
+      .orderBy(desc(template.publishedAt))
+      .limit(q.perPage)
+      .offset((q.page - 1) * q.perPage),
+    db.select({ n: count() }).from(template).where(where),
+  ]);
+  const total = Number(totals?.n ?? 0);
 
   const items = await hydrateTemplateCards(rows.map((r) => r.id));
 
   return {
     items,
-    total: items.length,
+    total,
     page: q.page,
     perPage: q.perPage,
   };

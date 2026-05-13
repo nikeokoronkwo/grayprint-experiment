@@ -12,6 +12,7 @@ import { Polar } from '@polar-sh/sdk';
 import { sendDeviceApprovalEmail, sendMagicLinkEmail, sendOtpEmail } from './email';
 import { recordPolarEvent } from './polar-events';
 import { useDb } from './db';
+import * as schema from '../db/schema/index';
 
 /**
  * Singleton better-auth instance. We construct lazily so runtimeConfig is available.
@@ -59,7 +60,14 @@ export function useAuth() {
     appName: 'Grayprint',
     secret: config.betterAuthSecret,
     baseURL: config.betterAuthUrl || config.public.siteUrl,
-    database: drizzleAdapter(db, { provider: 'pg' }),
+    database: drizzleAdapter(db, {
+      provider: 'pg',
+      // Map better-auth's internal model names to our camelCase exports where
+      // they differ. The drizzle adapter looks up `schema[model]` verbatim —
+      // the apiKey plugin's model name is `apikey` (no caps), but we export
+      // it as `apiKey`.
+      schema: { ...schema, apikey: schema.apiKey },
+    }),
     emailAndPassword: { enabled: false },
     user: {
       additionalFields: {
